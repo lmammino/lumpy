@@ -24,13 +24,4 @@ const parseLumpyFile = (filePath) => new Promise((resolve, reject) => {
     .on('error', reject)
 })
 
-const build = async (opt) => {
-  const dependencies = await parseLumpyFile(opt.lumpyFile)
-  console.log({ dependencies })
-  // TODO retrieve dependencies
-  // TODO combine dependencies
-  // TODO minify
-  // TODO save or print to std
-}
-
-module.exports = build
+module.exports = parseLumpyFile

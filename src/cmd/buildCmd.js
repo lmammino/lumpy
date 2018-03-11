@@ -1,6 +1,6 @@
 const { join, resolve } = require('path')
 const { homedir } = require('os')
-const build = require('./build')
+const build = require('../build')
 
 exports.command = 'build [destFile]'
 
