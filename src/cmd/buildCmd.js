@@ -1,6 +1,5 @@
 const { join, resolve } = require('path')
 const { homedir } = require('os')
-const build = require('../build')
 
 exports.command = 'build [destFile]'
 
@@ -46,6 +45,4 @@ exports.builder = (yargs) =>
       type: 'boolean'
     })
 
-exports.handler = async (argv) => {
-  await build(argv)
-}
+exports.handler = require('../build')

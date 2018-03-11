@@ -11,7 +11,7 @@ const parseLumpyFile = (filePath) => new Promise((resolve, reject) => {
   lineReader
     .on('line', function (line) {
       // strips comment lines
-      if (line.trim()[0] !== '#') {
+      if (line.trim() && line.trim()[0] !== '#') {
         // validates url
         const { protocol } = url.parse(line.trim())
         if (!protocol) {
