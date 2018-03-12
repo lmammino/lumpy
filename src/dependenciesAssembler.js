@@ -5,7 +5,6 @@ const mkdirpsync = require('mkdirpsync')
 const got = require('got')
 const { Transform } = require('readable-stream')
 
-// TODO add progress events
 class DependenciesAssembler extends Transform {
   constructor (dependencies = [], options = {}) {
     super(options)

@@ -1,14 +1,38 @@
 {
   "name": "lumpy",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "version": "0.0.1",
+  "description": "A lumpy and dummy JavaScript module bundler for those who are stuck in the past",
+  "engines": {
+    "node": ">=8.0.0"
+  },
+  "engineStrict": true,
+  "main": "src/cli.js",
+  "bin": {
+    "lumpy": "src/cli.js"
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "keywords": [
+    "Javascript",
+    "module",
+    "bundler",
+    "module bundler",
+    "dependencies",
+    "concatenate",
+    "tool",
+    "frontend"
+  ],
+  "author": {
+    "name": "Luciano Mammino",
+    "url": "https://loige.co"
+  },
+  "repository": "https://github.com/lmammino/lumpy",
+  "bugs": {
+    "url": "https://github.com/lmammino/lumpy/issues"
+  },
+  "homepage": "https://github.com/lmammino/lumpy#readme",
+  "license": "MIT",
   "devDependencies": {
     "eslint": "^4.18.2",
     "eslint-config-standard": "^11.0.0",
@@ -18,11 +42,10 @@
     "eslint-plugin-standard": "^3.0.1"
   },
   "dependencies": {
+    "babel-minify": "^0.3.0",
     "got": "^8.3.0",
     "mkdirpsync": "^0.1.0",
-    "progress-stream": "^2.0.0",
     "readable-stream": "^2.3.5",
-    "uglify-stream": "^1.1.0",
     "yargs": "^11.0.0"
   }
 }
