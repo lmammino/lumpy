@@ -1,5 +1,7 @@
 const { join, resolve } = require('path')
 const { homedir } = require('os')
+const { existsSync } = require('fs')
+const rimraf = require('rimraf')
 
 exports.command = 'clear-cache'
 
@@ -9,27 +11,23 @@ exports.describe = 'Clear cache directory'
 
 exports.builder = (yargs) =>
   yargs
-    .option('lumpyFile', {
-      alias: 'l',
-      default: resolve(join(process.cwd(), 'lumpy.txt')),
-      type: 'string'
-    })
     .option('cacheFolder', {
+      describe: 'Specify a custom cache folder',
       alias: 'c',
-      default: resolve(join(homedir, '.lumpy-cache')),
+      default: resolve(join(homedir(), '.lumpy-cache')),
       type: 'string'
     })
-    .option('noMinify', {
-      alias: 'M',
-      default: false,
-      type: 'boolean'
-    })
-    .option('noCache', {
-      alias: 'C',
-      default: false,
-      type: 'boolean'
-    })
 
-exports.handler = (argv) => {
+exports.handler = (opt) => {
+  if (!existsSync(opt.cacheFolder)) {
+    console.error(`Error: ${opt.cacheFolder} does not exist`)
+    process.exit(1)
+  }
 
+  rimraf(join(opt.cacheFolder, '*'), (err) => {
+    if (err) {
+      console.error(`Error: ${err.toString()}`)
+      process.exit(1)
+    }
+  })
 }

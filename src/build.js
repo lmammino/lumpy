@@ -1,5 +1,6 @@
 const { createWriteStream } = require('fs')
 const minify = require('babel-minify')
+const intoStream = require('into-stream')
 const streamAccumulator = require('./streamAccumulator')
 const parseLumpyFile = require('./parseLumpyFile')
 const DependenciesAssembler = require('./dependenciesAssembler')
@@ -12,17 +13,21 @@ const build = async (opt) => {
 
   // retrieve and assemble dependencies
   const depsAssembler = new DependenciesAssembler(dependencies, { cacheFolder, noCache })
-  const assembledCode = await streamAccumulator.promise(depsAssembler)
 
-  // minifies the output if needed
-  const output = opt.noMinify ? assembledCode.toString() : minify(assembledCode.toString()).code
+  let assembledCodeStream = depsAssembler
+
+  if (!opt.noMinify) {
+    // to minify the stream needs to be accumulated in memory and then passed to the minifier
+    const assembledCode = minify(await streamAccumulator.promise(depsAssembler)).code
+    // recreates a stream with the minified output
+    assembledCodeStream = intoStream(assembledCode)
+  }
 
   // prints the output
   const destStream = opt.stdout ? process.stdout : createWriteStream(opt.destFile)
-  destStream.write(output)
-  if (!opt.stdout) {
-    destStream.end()
-  }
+
+  assembledCodeStream
+    .pipe(destStream)
 }
 
 module.exports = build

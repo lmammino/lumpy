@@ -44,8 +44,10 @@
   "dependencies": {
     "babel-minify": "^0.3.0",
     "got": "^8.3.0",
+    "into-stream": "^3.1.0",
     "mkdirpsync": "^0.1.0",
     "readable-stream": "^2.3.5",
+    "rimraf": "^2.6.2",
     "yargs": "^11.0.0"
   }
 }
