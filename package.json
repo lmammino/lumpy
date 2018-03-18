@@ -3,7 +3,7 @@
   "version": "0.0.1",
   "description": "A lumpy and dummy JavaScript module bundler for those who are stuck in the past",
   "engines": {
-    "node": ">=8.0.0"
+    "node": ">= 8.0.0"
   },
   "engineStrict": true,
   "main": "src/cli.js",
@@ -48,6 +48,7 @@
     "mkdirpsync": "^0.1.0",
     "readable-stream": "^2.3.5",
     "rimraf": "^2.6.2",
+    "stream-accumulator": "0.0.1",
     "yargs": "^11.0.0"
   }
 }
