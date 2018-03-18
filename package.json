@@ -1,6 +1,6 @@
 {
   "name": "lumpy",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "A lumpy and dummy JavaScript module bundler for those who are stuck in the past",
   "engines": {
     "node": ">= 8.0.0"
