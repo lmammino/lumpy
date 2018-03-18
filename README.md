@@ -63,7 +63,47 @@ This will output the built package in `vendor.js`. This file will contain the co
 
 ## 😱 Advanced usage
 
-... TODO
+The `lumpy` executable offers 3 main sub-commands:
+
+  - `build`: creates a build package from a `lumpy.txt` file
+  - `clear-cache`: clears the cache folder
+  - `--help`: display the help for the main executable or a subcommand (`lumpy [build | clear-cache] --help`)
+
+
+### 📦 Build
+
+The build command allows you to build a vendors package from a `lumpy.txt` file.
+
+#### Usage:
+
+```bash
+lumpy build [destFile]
+```
+
+Where `destFile` is the path of the *compiled* bundle file (by default it will be `vendors.js` in the current working directory).
+
+#### Options:
+
+  - `--lumpyFile, -l [file]`: (optional) the lumpy file to use. By default it will check for a `lumpy.txt` file in the current working directory
+  - `--cacheFolder, -c [path]`: (optional) the path to a folder where the cache files are stored. By default it will create a `.lumpy-cache` directory in your user home directory.
+  - `--noMinify, -M`: (optional) if set it won't minify the resulting vendors bundle file.
+  - `--noCache, -C`: (optional) if set it won't try to use the cache
+  - `--stdout, -o`: (optional) if set it will output the resulting bundle in the standard output instead of a doing that on a file. Useful if you want to pipe the resulting content to another command.
+
+
+### 🛀🏿 Clear cache
+
+Clear the cache folder deleting all the previously downloaded files.
+
+#### Usage:
+
+```bash
+lumpy clear-cache
+```
+
+#### Options:
+
+- `--cacheFolder, -c [path]`: (optional) the path to a folder where the cache files are stored. By default it will create a `.lumpy-cache` directory in your user home directory.
 
 
 ## 👯‍ Contributing
