@@ -10,17 +10,12 @@ jest.mock('fs')
 jest.mock('mkdirpsync')
 
 const sources = {
-  'http://sources.com/1.js': ';;(function(){ console.log(\'Hello\') })()',
-  'http://sources.com/2.js': ';;(function(){ console.log(\'World\') })()',
-  'http://sources.com/3.js': ';;(function(){ alert(\'Hello World\') })()'
+  'http://sources.com/1.js': '(function(){ console.log(\'Hello\') })()',
+  'http://sources.com/2.js': '(function(){ console.log(\'World\') })();',
+  'http://sources.com/3.js': '(function(){ alert(\'Hello World\') })()'
 }
 
-const combinedSources = Object
-  .values(sources)
-  .reduce((accumulator, current) => {
-    accumulator += current
-    return accumulator
-  }, '')
+const combinedSources = '(function(){ console.log(\'Hello\') })();\n(function(){ console.log(\'World\') })();\n(function(){ alert(\'Hello World\') })();\n'
 
 const cacheKeysMap = Object
   .keys(sources)

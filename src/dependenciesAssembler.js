@@ -49,8 +49,19 @@ class DependenciesAssembler extends Transform {
           .pipe(this.currentWriteCacheStream)
       }
 
+      let lastChar
       this.currentStream
-        .on('end', nextDependency)
+        .on('end', () => {
+          // adds a safety separator if needed
+          if (lastChar !== ';') {
+            this.push(';')
+          }
+          this.push('\n')
+          return nextDependency()
+        })
+        .on('data', (d) => {
+          lastChar = d.toString()[d.toString().length - 1]
+        })
         .on('error', console.error)
         .pipe(this, { end: false })
     }
